@@ -2,16 +2,7 @@
 
 ## Project Summary
 
-In this project you will build and explain a small music recommender system.
-
-Your goal is to:
-
-- Represent songs and a user "taste profile" as data
-- Design a scoring rule that turns that data into recommendations
-- Evaluate what your system gets right and wrong
-- Reflect on how this mirrors real world AI recommenders
-
-Replace this paragraph with your own summary of what your version does.
+This project simulates a content-based music recommender: it represents songs and a listener's taste profile as structured data, scores every song in a 20-track catalog against that profile using a weighted point system, and returns a ranked, explained list of recommendations.
 
 ---
 
@@ -52,10 +43,11 @@ system might over-prioritize genre labels over actual sonic similarity.
 
 1. Create a virtual environment (optional but recommended):
 
-   ```bash
+```bash
    python -m venv .venv
    source .venv/bin/activate      # Mac or Linux
    .venv\Scripts\activate         # Windows
+```
 
 2. Install dependencies
 
@@ -83,15 +75,21 @@ You can add more tests in `tests/test_recommender.py`.
 
 ## Sample Recommendation Output
 
-Paste a sample of your recommender's output here as a text block so a reader can see what it produces:
-
 ```
-# e.g.:
-# User profile: genre=indie, mood=chill, energy=low
-# Recommendations:
-#   1. ...
-#   2. ...
-#   3. ...
+$ python -m src.main
+Loaded songs: 20
+=== Happy Pop ===
+Profile: {'genre': 'pop', 'mood': 'happy', 'energy': 0.8, 'min_popularity': 0}
+1. Sunrise City - Score: 5.85
+   Because: genre match: pop (+2.0); mood match: happy (+1.5); energy closeness (+1.96); popularity bonus (+0.39)
+2. Sugar Rush - Score: 5.75
+   Because: genre match: pop (+2.0); mood match: happy (+1.5); energy closeness (+1.9); popularity bonus (+0.35)
+3. Gym Hero - Score: 4.09
+   Because: genre match: pop (+2.0); energy closeness (+1.74); popularity bonus (+0.35)
+4. Rooftop Lights - Score: 3.76
+   Because: mood match: happy (+1.5); energy closeness (+1.92); popularity bonus (+0.34)
+5. Golden Hour - Score: 3.60
+   Because: mood match: happy (+1.5); energy closeness (+1.78); popularity bonus (+0.32)
 ```
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->
@@ -132,6 +130,3 @@ Write 1 to 2 paragraphs here about what you learned:
 
 - about how recommenders turn data into predictions
 - about where bias or unfairness could show up in systems like this
-
-
-
