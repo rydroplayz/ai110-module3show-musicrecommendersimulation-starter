@@ -17,17 +17,32 @@ Replace this paragraph with your own summary of what your version does.
 
 ## How The System Works
 
-Explain your design in plain language.
+Real-world music platforms like Spotify and YouTube generally combine two approaches. Collaborative filtering looks at behavior across many users — if people who liked the songs you liked also liked a new song, it gets recommended to you, even if the system knows nothing about the song's actual sound. Content-based filtering instead looks at the song's own
+attributes (genre, tempo, mood, energy) and compares them to attributes you've responded well to in the past. Most production systems blend both, since collaborative filtering needs a lot of user history to work well, while content-based filtering can make reasonable suggestions even for a brand-new song nobody has listened to yet (the "cold-start problem").
 
-Some prompts to answer:
+This simulation is a content-based recommender only — it doesn't use other users' behavior at all. Every song is represented as a set of attributes (genre, mood, energy, tempo, etc.), and a listener's taste is represented as a target profile over those same attributes. A `Recommender` scores every song in the catalog against that profile using a weighted point system, then ranks and returns the top-scoring
+songs.
 
-- What features does each `Song` use in your system
-  - For example: genre, mood, energy, tempo
-- What information does your `UserProfile` store
-- How does your `Recommender` compute a score for each song
-- How do you choose which songs to recommend
+**Song features used:** title, artist, genre, mood, energy, tempo_bpm, valence, danceability, acousticness
 
-You can include a simple diagram or bullet list if helpful.
+**UserProfile features used:** favorite_genre, favorite_mood,
+target_energy, likes_acoustic
+
+### Algorithm Recipe
+
+| Rule | Points |
+|---|---|
+| Genre match | +2.0 |
+| Mood match | +1.5 |
+| Energy closeness | up to +2.0 (sliding scale, not exact-match only) |
+| Acoustic preference match | +1.0 |
+| Mood tag overlap | +1.0 |
+| Popularity bonus | up to +0.5 |
+
+Potential bias to watch for: genre and mood are fixed-point matches, so a
+song that's a near-perfect vibe match but technically a different genre
+label could score lower than a mediocre song in the "right" genre. This
+system might over-prioritize genre labels over actual sonic similarity.
 
 ---
 
