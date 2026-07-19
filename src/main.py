@@ -2,7 +2,14 @@
 Command line runner for the Music Recommender Simulation.
 """
 
+import sys
 from src.recommender import load_songs, recommend_songs
+
+try:
+    from tabulate import tabulate
+    HAS_TABULATE = True
+except ImportError:
+    HAS_TABULATE = False
 
 
 USER_PROFILES = {
@@ -14,17 +21,30 @@ USER_PROFILES = {
 }
 
 
+def print_recommendations(profile_name, results):
+    print(f"\n=== {profile_name} ===")
+    if HAS_TABULATE:
+        rows = [[song["title"], song["artist"], score, explanation] for song, score, explanation in results]
+        print(tabulate(rows, headers=["Title", "Artist", "Score", "Reasons"], tablefmt="grid"))
+    else:
+        for i, (song, score, explanation) in enumerate(results, start=1):
+            print(f"{i}. {song['title']} - Score: {score:.2f}")
+            print(f"   Because: {explanation}")
+
+
 def main() -> None:
     songs = load_songs("data/songs.csv")
     print(f"Loaded songs: {len(songs)}")
 
+    strategy = "balanced"
+    if len(sys.argv) > 1 and sys.argv[1] in ("balanced", "genre_first", "mood_first", "energy_similarity"):
+        strategy = sys.argv[1]
+
+    print(f"Strategy: {strategy}")
+
     for profile_name, user_prefs in USER_PROFILES.items():
-        print(f"\n=== {profile_name} ===")
-        print(f"Profile: {user_prefs}")
-        recommendations = recommend_songs(user_prefs, songs, k=5)
-        for i, (song, score, explanation) in enumerate(recommendations, start=1):
-            print(f"{i}. {song['title']} - Score: {score:.2f}")
-            print(f"   Because: {explanation}")
+        recommendations = recommend_songs(user_prefs, songs, k=5, strategy=strategy, diversity_penalty=0.5)
+        print_recommendations(profile_name, recommendations)
 
 
 if __name__ == "__main__":
