@@ -78,18 +78,22 @@ You can add more tests in `tests/test_recommender.py`.
 ```
 $ python -m src.main
 Loaded songs: 20
+Strategy: balanced
+
 === Happy Pop ===
-Profile: {'genre': 'pop', 'mood': 'happy', 'energy': 0.8, 'min_popularity': 0}
-1. Sunrise City - Score: 5.85
-   Because: genre match: pop (+2.0); mood match: happy (+1.5); energy closeness (+1.96); popularity bonus (+0.39)
-2. Sugar Rush - Score: 5.75
-   Because: genre match: pop (+2.0); mood match: happy (+1.5); energy closeness (+1.9); popularity bonus (+0.35)
-3. Gym Hero - Score: 4.09
-   Because: genre match: pop (+2.0); energy closeness (+1.74); popularity bonus (+0.35)
-4. Rooftop Lights - Score: 3.76
-   Because: mood match: happy (+1.5); energy closeness (+1.92); popularity bonus (+0.34)
-5. Golden Hour - Score: 3.60
-   Because: mood match: happy (+1.5); energy closeness (+1.78); popularity bonus (+0.32)
++----------------+----------------+---------+---------------------------------------------------------------------------------------------------------------+
+| Title          | Artist         |   Score | Reasons                                                                                                       |
++================+================+=========+===============================================================================================================+
+| Sunrise City   | Neon Echo      |    5.85 | genre match: pop (+2.0); mood match: happy (+1.5); energy closeness (+1.96); popularity bonus (+0.39)         |
++----------------+----------------+---------+---------------------------------------------------------------------------------------------------------------+
+| Sugar Rush     | Paper Lanterns |    5.75 | genre match: pop (+2.0); mood match: happy (+1.5); energy closeness (+1.9); popularity bonus (+0.35)          |
++----------------+----------------+---------+---------------------------------------------------------------------------------------------------------------+
+| Gym Hero       | Max Pulse      |    4.09 | genre match: pop (+2.0); energy closeness (+1.74); popularity bonus (+0.35)                                   |
++----------------+----------------+---------+---------------------------------------------------------------------------------------------------------------+
+| Rooftop Lights | Indigo Parade  |    3.76 | mood match: happy (+1.5); energy closeness (+1.92); popularity bonus (+0.34)                                  |
++----------------+----------------+---------+---------------------------------------------------------------------------------------------------------------+
+| Golden Hour    | Indigo Parade  |    3.1  | mood match: happy (+1.5); energy closeness (+1.78); popularity bonus (+0.32); artist diversity penalty (-0.5) |
++----------------+----------------+---------+---------------------------------------------------------------------------------------------------------------+
 ```
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->

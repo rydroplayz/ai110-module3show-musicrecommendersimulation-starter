@@ -40,8 +40,8 @@ Profile: {'genre': 'pop', 'mood': 'happy', 'energy': 0.8, 'min_popularity': 0}
    Because: genre match: pop (+2.0); energy closeness (+1.74); popularity bonus (+0.35)
 4. Rooftop Lights - Score: 3.76
    Because: mood match: happy (+1.5); energy closeness (+1.92); popularity bonus (+0.34)
-5. Golden Hour - Score: 3.60
-   Because: mood match: happy (+1.5); energy closeness (+1.78); popularity bonus (+0.32)
+5. Golden Hour - Score: 3.1
+   Because: mood match: happy (+1.5); energy closeness (+1.78); popularity bonus (+0.32); artist diversity penalty (-0.5)
 ```
 
 ### Chill Lofi
@@ -51,9 +51,9 @@ Profile: {'genre': 'lofi', 'mood': 'chill', 'energy': 0.35, 'favorite_mood_tags'
    Because: genre match: lofi (+2.0); mood match: chill (+1.5); energy closeness (+2.0); mood tag overlap (+1.0); popularity bonus (+0.19)
 2. Midnight Coding - Score: 6.59
    Because: genre match: lofi (+2.0); mood match: chill (+1.5); energy closeness (+1.86); mood tag overlap (+1.0); popularity bonus (+0.23)
-3. Focus Flow - Score: 5.10
-   Because: genre match: lofi (+2.0); energy closeness (+1.9); mood tag overlap (+1.0); popularity bonus (+0.2)
-4. Spacewalk Thoughts - Score: 4.50
+3. Focus Flow - Score: 4.6
+   Because: genre match: lofi (+2.0); energy closeness (+1.9); mood tag overlap (+1.0); popularity bonus (+0.2); artist diversity penalty (-0.5)
+4. Spacewalk Thoughts - Score: 4.5
    Because: mood match: chill (+1.5); energy closeness (+1.86); mood tag overlap (+1.0); popularity bonus (+0.14)
 5. Coffee Shop Stories - Score: 3.13
    Because: energy closeness (+1.96); mood tag overlap (+1.0); popularity bonus (+0.17)
@@ -62,16 +62,16 @@ Profile: {'genre': 'lofi', 'mood': 'chill', 'energy': 0.35, 'favorite_mood_tags'
 ### High-Energy EDM
 ```
 Profile: {'genre': 'edm', 'mood': 'intense', 'energy': 0.95, 'min_popularity': 50}
-1. Neon Pulse - Score: 5.90
+1. Neon Pulse - Score: 5.9
    Because: genre match: edm (+2.0); mood match: intense (+1.5); energy closeness (+2.0); popularity bonus (+0.4)
 2. Bass Drop City - Score: 5.83
    Because: genre match: edm (+2.0); mood match: intense (+1.5); energy closeness (+1.96); popularity bonus (+0.37)
-3. Gym Hero - Score: 3.81
-   Because: mood match: intense (+1.5); energy closeness (+1.96); popularity bonus (+0.35)
-4. Storm Runner - Score: 3.73
-   Because: mood match: intense (+1.5); energy closeness (+1.92); popularity bonus (+0.31)
-5. Broken Amps - Score: 3.65
-   Because: mood match: intense (+1.5); energy closeness (+1.86); popularity bonus (+0.29)
+3. Gym Hero - Score: 3.31
+   Because: mood match: intense (+1.5); energy closeness (+1.96); popularity bonus (+0.35); artist diversity penalty (-0.5)
+4. Storm Runner - Score: 3.23
+   Because: mood match: intense (+1.5); energy closeness (+1.92); popularity bonus (+0.31); artist diversity penalty (-0.5)
+5. Broken Amps - Score: 2.65
+   Because: mood match: intense (+1.5); energy closeness (+1.86); popularity bonus (+0.29); artist diversity penalty (-0.5); artist diversity penalty (-0.5)
 ```
 
 ### Acoustic Low-Energy
@@ -79,12 +79,12 @@ Profile: {'genre': 'edm', 'mood': 'intense', 'energy': 0.95, 'min_popularity': 5
 Profile: {'genre': 'acoustic', 'mood': 'relaxed', 'energy': 0.25, 'likes_acoustic': True}
 1. Wandering Strings - Score: 6.58
    Because: genre match: acoustic (+2.0); mood match: relaxed (+1.5); energy closeness (+1.98); acoustic preference match (+1.0); popularity bonus (+0.1)
-2. Slow Burn - Score: 6.50
-   Because: genre match: acoustic (+2.0); mood match: relaxed (+1.5); energy closeness (+1.88); acoustic preference match (+1.0); popularity bonus (+0.12)
+2. Slow Burn - Score: 6.0
+   Because: genre match: acoustic (+2.0); mood match: relaxed (+1.5); energy closeness (+1.88); acoustic preference match (+1.0); popularity bonus (+0.12); artist diversity penalty (-0.5)
 3. Coffee Shop Stories - Score: 4.43
    Because: mood match: relaxed (+1.5); energy closeness (+1.76); acoustic preference match (+1.0); popularity bonus (+0.17)
-4. Old Town Jazz - Score: 4.30
-   Because: mood match: relaxed (+1.5); energy closeness (+1.62); acoustic preference match (+1.0); popularity bonus (+0.18)
+4. Old Town Jazz - Score: 3.8
+   Because: mood match: relaxed (+1.5); energy closeness (+1.62); acoustic preference match (+1.0); popularity bonus (+0.18); artist diversity penalty (-0.5)
 5. Spacewalk Thoughts - Score: 3.08
    Because: energy closeness (+1.94); acoustic preference match (+1.0); popularity bonus (+0.14)
 ```
@@ -92,16 +92,16 @@ Profile: {'genre': 'acoustic', 'mood': 'relaxed', 'energy': 0.25, 'likes_acousti
 ### Adversarial (conflicting prefs)
 ```
 Profile: {'genre': 'metal', 'mood': 'sad', 'energy': 0.9}
-1. Neon Pulse - Score: 2.30
+1. Neon Pulse - Score: 2.3
    Because: energy closeness (+1.9); popularity bonus (+0.4)
-2. Storm Runner - Score: 2.29
-   Because: energy closeness (+1.98); popularity bonus (+0.31)
-3. Gym Hero - Score: 2.29
+2. Gym Hero - Score: 2.29
    Because: energy closeness (+1.94); popularity bonus (+0.35)
-4. Broken Amps - Score: 2.25
-   Because: energy closeness (+1.96); popularity bonus (+0.29)
-5. Sugar Rush - Score: 2.25
+3. Sugar Rush - Score: 2.25
    Because: energy closeness (+1.9); popularity bonus (+0.35)
+4. Sunrise City - Score: 2.23
+   Because: energy closeness (+1.84); popularity bonus (+0.39)
+5. Rooftop Lights - Score: 2.06
+   Because: energy closeness (+1.72); popularity bonus (+0.34)
 ```
 
 ### Comparisons
@@ -116,12 +116,14 @@ Profile: {'genre': 'metal', 'mood': 'sad', 'energy': 0.9}
 
 ## Diversity / Fairness Component
 
-recommend_songs() accepts a diversity_penalty parameter. After each song is picked for the results, any remaining song by that same artist gets the penalty subtracted from its score before the next pick. This stops one artist with several catalog entries from filling the whole top 5 — visible in the High-Energy EDM results, where Broken Amps (Voltline's second song) gets penalized twice and drops in rank, making room for other artists.
+recommend_songs() accepts a diversity_penalty parameter. After each song is picked for the results, any remaining song by that same artist gets the penalty subtracted from its score before the next pick. This is meant to stop one artist with several catalog entries from filling the whole top 5.
+
+Tested against the High-Energy EDM profile at diversity_penalty=0.5, the penalty does visibly fire: Gym Hero, Storm Runner, and Broken Amps all pick up an "artist diversity penalty (-0.5)" reason, and Broken Amps is penalized twice (once for sharing an artist with Neon Pulse, once for sharing an artist with Storm Runner), dropping it from what would otherwise be a higher score down to 2.65. However, at this penalty value it isn't strong enough to actually change who makes the top 5 — all 5 slots are still held by just two artists, Voltline and Max Pulse. A real fix would need either a larger penalty per repeat or a hard cap (e.g. "max 2 songs per artist in the results"), which is now listed under Future Work.
 
 ## 9. Future Work
 1. Add fuzzy/partial genre matching so subgenres like "indie pop" get partial credit against "pop" instead of zero.
 2. When a stated preference (genre or mood) doesn't exist anywhere in the catalog, show a warning instead of silently ignoring it, so the user knows part of their request had no effect.
-3. Add an artist-diversity penalty so a really strong artist can't take up multiple spots in one top-5 list.
+3. Increase the artist diversity penalty (or add a hard per-artist cap) — at the current 0.5-point penalty, Voltline and Max Pulse still occupy all 5 slots in the High-Energy EDM results, so the fairness mechanism isn't strong enough yet to meaningfully diversify results in a small catalog like this one.
 
 ## 10. Personal Reflection
 The biggest thing I learned is that "recommendation" is really just scoring every option and sorting them, there's no extra magic step once you break it down like that. What surprised me was the Adversarial profile, I expected it to just return low scores across the board, not to silently drop two of my three scoring rules and rank almost entirely on the leftover ones. That's a good example of how a system can look like it's working while quietly ignoring part of what you asked for. AI helped me build the scoring logic fast, but I still had to actually run it myself to catch real bugs, like when I ran main.py and got a ModuleNotFoundError because the import didn't match how I was actually running the script. Reading the actual test output instead of assuming it worked is what caught that.
