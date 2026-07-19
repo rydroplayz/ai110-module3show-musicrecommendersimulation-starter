@@ -98,25 +98,17 @@ Profile: {'genre': 'pop', 'mood': 'happy', 'energy': 0.8, 'min_popularity': 0}
 
 ## Experiments You Tried
 
-Use this section to document the experiments you ran. For example:
-
-- What happened when you changed the weight on genre from 2.0 to 0.5
-- What happened when you added tempo or valence to the score
-- How did your system behave for different types of users
+Switching from the balanced strategy to mood_first changes weight priority (mood becomes worth +4.0 instead of +1.5), which visibly reorders results — e.g. under mood_first, Spacewalk Thoughts jumps into the Chill Lofi top 3 even without a genre match, purely because mood weight dominates. This confirms the strategy pattern actually changes ranking behavior, not just labels.
 
 ---
 
 ## Limitations and Risks
 
-Summarize some limitations of your recommender.
+- Genre/mood matching is exact-string only — "indie pop" gets zero credit against a "pop" preference even though it's a close subgenre.
+- The Adversarial profile test showed the system silently ignores preferences (like a mood) that don't exist anywhere in the catalog, instead of warning the user.
+- Small catalog (20 songs) means some genres only have 2-3 songs, limiting variety within any single genre.
 
-Examples:
-
-- It only works on a tiny catalog
-- It does not understand lyrics or language
-- It might over favor one genre or mood
-
-You will go deeper on this in your model card.
+See `model_card.md` for the full bias analysis.
 
 ---
 
@@ -126,7 +118,4 @@ Read and complete `model_card.md`:
 
 [**Model Card**](model_card.md)
 
-Write 1 to 2 paragraphs here about what you learned:
-
-- about how recommenders turn data into predictions
-- about where bias or unfairness could show up in systems like this
+Building this made it clear that "recommendation" is really just scoring plus sorting — nothing more mysterious than that. The most interesting bias I found wasn't in the math, it was in what the system does when a user's preference has no match at all: it doesn't fail, it just silently stops using that part of the input, which could easily mislead a real user into thinking their preference was respected when it wasn't.

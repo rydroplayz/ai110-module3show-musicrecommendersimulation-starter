@@ -114,6 +114,10 @@ Profile: {'genre': 'metal', 'mood': 'sad', 'energy': 0.9}
 **Intended use**: an educational demo of how weighted, content-based scoring and ranking work together to produce recommendations.
 **Not intended for**: real music recommendations, any claim about actual listener behavior, or use with real user data — the attribute values in the dataset are hand-estimated, not measured from real audio, and the system has no way of learning from real usage.
 
+## Diversity / Fairness Component
+
+recommend_songs() accepts a diversity_penalty parameter. After each song is picked for the results, any remaining song by that same artist gets the penalty subtracted from its score before the next pick. This stops one artist with several catalog entries from filling the whole top 5 — visible in the High-Energy EDM results, where Broken Amps (Voltline's second song) gets penalized twice and drops in rank, making room for other artists.
+
 ## 9. Future Work
 1. Add fuzzy/partial genre matching so subgenres like "indie pop" get partial credit against "pop" instead of zero.
 2. When a stated preference (genre or mood) doesn't exist anywhere in the catalog, show a warning instead of silently ignoring it, so the user knows part of their request had no effect.
